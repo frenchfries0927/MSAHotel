@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko-KR">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>마이페이지 수정</title>
+	<style>
+		/* 기존 스타일 그대로 유지 */
+	</style>
+</head>
+<body>
+	<div class="form-container">
+		<!-- 프로필 이미지 미리보기 -->
+		<div class="profile-preview">
+			<img id="preview-image" th:src="@{'/images/' + ${user.profileImg}}" alt="프로필 이미지" onclick="triggerFileInput()">
+		</div>
+		
+		<form th:action="@{'/admin/mypage/' + ${user.id} + '/edit'}" th:method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+			<!-- 기존 데이터로 채워짐 -->
+			<div class="input-group">
+				<label for="name">이름</label>
+				<input type="text" id="name" name="name" th:value="${user.name}" required>
+			</div>
+			
+			<div class="input-group">
+				<label for="nickname">닉네임</label>
+				<input type="text" id="nickname" name="nickname" th:value="${user.nickname}" required>
+				<button type="button" onclick="checkNickname()">중복 확인</button>
+			</div>
+			
+			<div id="nickname-error" class="error-message"></div>
+			
+			<div class="input-group">
+				<label for="email">이메일</label>
+				<input type="email" id="email" name="email" th:value="${user.email}" required>
+			</div>
+			
+			<div class="input-group">
+				<label for="addr">주소</label>
+				<input type="text" id="addr" name="addr" th:value="${user.addr}">
+			</div>
+			
+			<div class="input-group">
+				<label for="phone">전화번호</label>
+				<input type="text" id="phone" name="phone" th:value="${user.phone}">
+			</div>
+			
+			<div class="input-group">
+				<label>성별</label>
+				<div class="sex-buttons">
+					<input type="radio" id="male" name="sex" value="M" th:checked="${user.sex == 'M'}">
+					<label for="male">남성</label>
+					
+					<input type="radio" id="female" name="sex" value="F" th:checked="${user.sex == 'F'}">
+					<label for="female">여성</label>
+					
+					<input type="radio" id="none" name="sex" value="" th:checked="${user.sex == ''}">
+					<label for="none">없음</label>
+				</div>
+			</div>
+			
+			<div class="input-group">
+				<label for="birthDate">생년월일</label>
+				<input type="date" id="birthDate" name="birthDate" th:value="${user.birthDate}" required>
+			</div>
+			
+			<div class="input-group" style="visibility: hidden">
+				<label for="profileImg">프로필 이미지</label>
+				<input type="file" id="profileImg" name="image" accept="image/*" onchange="updatePreviewImage(this)">
+			</div>
+			
+			<button type="submit">수정 완료</button>
+		</form>
+	</div>
+	
+	<script>
+		function validateForm() {
+			const password = document.getElementById("pass").value;
+			const confirmPassword = document.getElementById("confirm-pass").value;
+			const passwordError = document.getElementById("password-error");
+			
+			if (password !== confirmPassword) {
+				passwordError.textContent = "비밀번호가 일치하지 않습니다.";
+				return false;
+			}
+			
+			passwordError.textContent = "";
+			return true;
+		}
+		
+		function checkNickname() {
+			const nickname = document.getElementById("nickname").value;
+			const nicknameError = document.getElementById("nickname-error");
+			
+			if (!nickname) {
+				nicknameError.textContent = "닉네임을 입력하세요.";
+				return;
+			}
+			
+			fetch(`/check-nickname?nickname=${nickname}`)
+					.then(response => response.json())
+					.then(data => {
+						nicknameError.textContent = data.exists ? "이미 사용 중인 닉네임입니다." : "사용 가능한 닉네임입니다.";
+					})
+					.catch(() => {
+						nicknameError.textContent = "닉네임 확인 중 오류가 발생했습니다.";
+					});
+		}
+		
+		function triggerFileInput() {
+			document.getElementById('profileImg').click();
+		}
+		
+		function updatePreviewImage(input) {
+			if (input.files && input.files[0]) {
+				const reader = new FileReader();
+				
+				reader.onload = function (e) {
+					document.getElementById('preview-image').src = e.target.result;
+				};
+				
+				reader.readAsDataURL(input.files[0]);
+			}
+		}
+	</script>
+</body>
+</html>

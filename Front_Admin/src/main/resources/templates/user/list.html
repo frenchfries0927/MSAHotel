@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko-KR" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/css/user_table.css" />
+	<link rel="javascript" href="/js/uselist.js" />
+	<title>회원 목록</title>
+</head>
+<body>
+	<main>
+		<nav>
+			<h2>회원 목록</h2>
+			<a href="/admin/join">회원 추가하기</a>
+		</nav>
+		<article>
+
+		
+<!--			<form class="filter">
+				<fieldset>
+					<legend>검색 필터</legend>
+					<p>
+						<label for="search">통합 검색:</label>
+						<input type="text" id="search" name="search">
+					</p>
+					<p>
+						<label for="startDate">가입일자:</label>
+						<input type="date" id="startDate" name="startDate">
+						<input type="date" id="endDate" name="endDate">
+					</p>
+					<p>
+						<label for="region">지역 선택:</label>
+						<select id="region" name="region">
+							<option value="서울">서울시</option>
+							<option value="부산">부산시</option>
+							<option value="대구">대구시</option>
+							<option value="인천">인천시</option>
+						</select>
+					</p>
+					<button type="submit">검색하기</button>
+				</fieldset>
+			</form>
+			-->
+			<section>
+			<table>
+				<thead>
+				<tr>
+					<th>No</th>
+					<th>이름</th>
+					<th>닉네임</th>
+					<th>이메일</th>
+					<th>휴대폰</th>
+					<th>주소</th>
+					<th>비고</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr th:each="user, iterStat : ${userList}">
+					<!-- 전체 순번 계산: startIndex + 현재 반복 순번 + 1 -->
+					<td th:text="${startIndex + iterStat.index + 1}">1</td>
+					<td>
+						<a th:href="@{/admin/mypage/{id}(id=${user.id})}" th:text="${user.name}">김민지</a>
+					</td>
+					<td th:text="${user.nickname}">MEANZ</td>
+					<td th:text="${user.email}">meanz.job@gmail.com</td>
+					<td th:text="${user.phone}">010-8990-7442</td>
+					<td th:text="${user.addr}">주소 정보</td>
+					<td>
+						<form th:action="@{/admin/list/{id}/delete(id=${user.id})}" method="post">
+							<button type="submit">삭제</button>
+						</form>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+			
+			<div class="pagination">
+				<a th:each="i : ${#numbers.sequence(0, totalPages - 1)}"
+				   th:href="@{'/admin/list?pageNo=' + ${i}}"
+				   th:text="${i + 1}"
+				   th:classappend="${i == currentPage} ? 'active' : ''"></a>
+			</div>
+			</section>
+		</article>
+	</main>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Hotel List</title>
+</head>
+<body>
+<h1>Available Hotels</h1>
+<div th:if="${error}">
+  <p th:text="${error}" style="color: red;"></p>
+</div>
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Location</th>
+    <th>Price</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="hotel : ${hotels}">
+    <td th:text="${hotel.name}">Hotel Name</td>
+    <td th:text="${hotel.location}">Hotel Location</td>
+    <td th:text="${hotel.price}">Hotel Price</td>
+  </tr>
+  </tbody>
+</table>
+<p th:if="${error}" th:text="${error}" style="color:red;"></p>
+
+<p th:if="${error}" th:text="${error}" style="color:red;"></p>
+
+</body>
+</html>

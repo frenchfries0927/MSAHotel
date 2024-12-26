@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>환영합니다</title>
+	<style>
+		/* 간단한 스타일 */
+		body, html {
+			height: 100%;
+			font-family: Arial, sans-serif;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background-color: #f4f4f4;
+		}
+		
+		.welcome-message {
+			background-color: white;
+			padding: 30px;
+			border-radius: 10px;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			text-align: center;
+			width: 300px;
+		}
+		
+		.welcome-message h2 {
+			margin-bottom: 20px;
+		}
+		
+		.welcome-message p {
+			font-size: 16px;
+			margin-bottom: 20px;
+		}
+		
+		.go-to-login {
+			text-decoration: none;
+			padding: 10px 20px;
+			background-color: #4caf50;
+			color: white;
+			border-radius: 5px;
+			font-size: 16px;
+		}
+		
+		.go-to-login:hover {
+			background-color: #45a049;
+		}
+	</style>
+</head>
+<body>
+	
+	<div class="welcome-message">
+		<h2>회원 가입을 환영합니다!</h2>
+		<p>가입이 완료되었습니다. 이제 로그인하실 수 있습니다.</p>
+		<a href="/admin/login" class="go-to-login">로그인 페이지로 이동</a>
+	</div>
+
+</body>
+</html>

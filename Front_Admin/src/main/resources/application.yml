@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: Front_Admin
+
+  servlet:
+    multipart:
+      enabled: true
+      location: C:/EasyStay/img/user
+      max-file-size: 50MB
+      max-request-size: 300MB
+
+  thymeleaf:
+    cache: false
+    check-template-location: false
+    enabled: true
+    prefix: classpath:/templates/
+    suffix: .html
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/userdb?serverTimezone=UTC
+    username: root
+    password: sangyeop123
+
+server:
+  port: 9100
+
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    lease-expiration-duration-in-seconds: 2
+
+  # 정적 리소스 경로 설정
+  resources:
+    static-locations: file:///C:/EasyStay/img/user/

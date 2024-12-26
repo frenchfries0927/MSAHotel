@@ -1,0 +1,51 @@
+a:visited,
+a:link,
+a:hover {
+    color: #2e313b;
+}
+
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+td, th {
+    border: 1px solid #c5c5c5;
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    border-bottom: 2px solid orangered;
+}
+
+tbody > tr:hover {
+    background-color: #faf3ee;
+}
+
+
+.pagination {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pagination a {
+    display: block;
+    border: 1px solid ;
+    padding: 10px;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+}
