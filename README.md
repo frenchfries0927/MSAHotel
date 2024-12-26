@@ -37,19 +37,19 @@ MSA(Microservice Architecture)를 활용하여 호텔 예약 서비스를 구축
 
 ## 화면 설계서
 1. **메인 페이지**
-   ![메인 페이지](images/image1.png)
+   ![메인 페이지](images/image%201.png)
 
 2. **호텔 리스트 페이지**
-   ![호텔 리스트 페이지](images/image2.png)
+   ![호텔 리스트 페이지](images/image%202.png)
 
 3. **호텔 상세 페이지**
-   ![호텔 상세 페이지](images/image3.png)
+   ![호텔 상세 페이지](images/image%203.png)
 
 4. **예약 확인 페이지**
-   ![예약 확인 페이지](images/image4.png)
+   ![예약 확인 페이지](images/image%204.png)
 
 5. **관리자 페이지**
-   ![관리자 페이지](images/image5.png)
+   ![관리자 페이지](images/image%205.png)
 
 ---
 
