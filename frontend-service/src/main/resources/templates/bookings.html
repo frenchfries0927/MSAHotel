@@ -9,23 +9,20 @@
   <thead>
   <tr>
     <th>ID</th>
-    <th>User ID</th>
-    <th>Hotel ID</th>
-    <th>Check-In</th>
-    <th>Check-Out</th>
-    <th>Total Price</th>
+    <th>Hotel</th>
+    <th>Guest</th>
+    <th>Date</th>
   </tr>
   </thead>
   <tbody>
   <tr th:each="booking : ${bookings}">
-    <td th:text="${booking.id}"></td>
-    <td th:text="${booking.userId}"></td>
-    <td th:text="${booking.hotelId}"></td>
-    <td th:text="${booking.checkInDate}"></td>
-    <td th:text="${booking.checkOutDate}"></td>
-    <td th:text="${booking.totalPrice}"></td>
+    <td th:text="${booking.id}">ID</td>
+    <td th:text="${booking.hotelName}">Hotel Name</td>
+    <td th:text="${booking.guestName}">Guest Name</td>
+    <td th:text="${booking.bookingDate}">Date</td>
   </tr>
   </tbody>
 </table>
+<p th:if="${error}" th:text="${error}" style="color:red;"></p>
 </body>
 </html>
